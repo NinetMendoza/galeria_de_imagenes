@@ -1,0 +1,46 @@
+<div class="min-h-screen flex items-start justify-center bg-base-100 pt-12">
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-2xl mb-4">Crear Cuenta</h2>
+      
+      <form class="space-y-4">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Nombre Completo</span>
+          </label>
+          <input type="text" placeholder="Tu nombre" class="input input-bordered" />
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input type="email" placeholder="tu@email.com" class="input input-bordered" />
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Contraseña</span>
+          </label>
+          <input type="password" placeholder="••••••••" class="input input-bordered" />
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Confirmar Contraseña</span>
+          </label>
+          <input type="password" placeholder="••••••••" class="input input-bordered" />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full">Registrarse</button>
+      </form>
+
+      <div class="divider">O</div>
+
+      <p class="text-center text-sm">
+        ¿Ya tienes cuenta?
+        <a routerLink="/login" class="link link-primary">Inicia sesión aquí</a>
+      </p>
+    </div>
+  </div>
+</div>
