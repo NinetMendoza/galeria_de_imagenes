@@ -1,0 +1,2 @@
+Inge ya instalamos nestjs creamos un nuevo proyecto y era muy pesado no se pudo enviar al repositorio pero le mando turas de que ya funciona y aquí esta el trello 
+https://trello.com/invite/b/6927715c02379a89ad71bf3d/ATTIa1b6135b5759a1bd64382e103dc3e1ed7169BD78/listas-de-tareas
