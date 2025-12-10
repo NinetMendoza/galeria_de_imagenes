@@ -1,0 +1,39 @@
+<div class="max-w-2xl mx-auto py-8 px-4">
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">📰 Tu Feed</h1>
+    <p class="text-gray-600">Descubre lo que comparten tus amigos</p>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="text-center py-12">
+    <div class="inline-block animate-spin">
+      <span class="text-4xl">📷</span>
+    </div>
+    <p class="text-gray-500 mt-4">Cargando publicaciones...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+    ❌ {{ error }}
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && posts.length === 0" class="text-center py-16">
+    <div class="text-6xl mb-4">📭</div>
+    <p class="text-gray-500 text-lg">No hay publicaciones disponibles</p>
+    <p class="text-gray-400 text-sm mt-2">¡Sé el primero en compartir algo!</p>
+  </div>
+
+  <!-- Posts Grid -->
+  <div *ngIf="!loading && posts.length > 0" class="space-y-6">
+    <app-post-item *ngFor="let post of posts" [post]="post"></app-post-item>
+  </div>
+
+  <!-- Load More -->
+  <div *ngIf="!loading && posts.length > 0" class="text-center py-8">
+    <button class="px-6 py-2 border-2 border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+      Cargar más publicaciones
+    </button>
+  </div>
+</div>

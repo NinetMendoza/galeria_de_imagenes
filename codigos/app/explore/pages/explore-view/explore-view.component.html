@@ -1,0 +1,62 @@
+<div class="min-h-screen bg-white dark:bg-gray-900">
+  <!-- Search Bar -->
+  <div class="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4">
+    <input
+      type="text"
+      placeholder="🔍 Buscar usuarios, hashtags..."
+      [(ngModel)]="searchQuery"
+      (input)="onSearch(searchQuery)"
+      class="w-full px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500"
+    />
+  </div>
+
+  <div class="max-w-7xl mx-auto p-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Trending Posts -->
+      <div class="md:col-span-2">
+        <h2 class="text-2xl font-bold mb-6 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+          🔥 Tendencias
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div *ngFor="let post of trendingPosts" class="group cursor-pointer">
+            <div class="relative overflow-hidden rounded-lg aspect-square bg-gray-100">
+              <img [src]="post.image" [alt]="post.caption" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p class="text-2xl font-bold">{{ post.likes }} 👍</p>
+                  <p class="text-sm">{{ post.comments.length }} 💬</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-sm font-semibold mt-2 line-clamp-2">{{ post.caption }}</p>
+            <p class="text-xs text-gray-500">@{{ post.user.username }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested Users -->
+      <div class="md:col-span-1">
+        <h2 class="text-xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+          👥 Sugerencias
+        </h2>
+        <div class="space-y-4">
+          <div *ngFor="let user of suggestedUsers" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <div class="flex items-center gap-3 flex-1">
+              <img [src]="user.profileImage" [alt]="user.username" class="w-10 h-10 rounded-full" />
+              <div class="flex-1">
+                <p class="font-semibold text-sm">{{ user.username }}</p>
+                <p class="text-xs text-gray-500">{{ user.followers }} seguidores</p>
+              </div>
+            </div>
+            <button
+              (click)="followUser(user)"
+              class="px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:shadow-lg transition-shadow"
+            >
+              Seguir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

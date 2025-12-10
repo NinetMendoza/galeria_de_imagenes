@@ -1,0 +1,70 @@
+<div class="bg-white dark:bg-gray-900 min-h-screen">
+  <div *ngIf="loading" class="text-center text-gray-500 py-8">
+    <p>Cargando perfil...</p>
+  </div>
+
+  <div *ngIf="!loading && user" class="bg-white dark:bg-gray-900">
+    <!-- Profile Header -->
+    <div class="max-w-4xl mx-auto px-4 py-8 border-b border-gray-200 dark:border-gray-800">
+      <div class="flex items-start justify-between">
+        <!-- Profile Info -->
+        <div class="flex items-start space-x-8">
+          <img
+            [src]="user.profileImage"
+            alt="{{ user.username }}"
+            class="w-32 h-32 rounded-full border-4 border-gray-200 dark:border-gray-700"
+          />
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{{ user.username }}</h1>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">{{ user.bio }}</p>
+            <div class="flex space-x-8 mb-4">
+              <div class="text-center">
+                <p class="font-bold text-lg text-gray-900 dark:text-white">{{ userPosts.length }}</p>
+                <p class="text-gray-600 dark:text-gray-400">Publicaciones</p>
+              </div>
+              <div class="text-center">
+                <p class="font-bold text-lg text-gray-900 dark:text-white">{{ user.followers }}</p>
+                <p class="text-gray-600 dark:text-gray-400">Seguidores</p>
+              </div>
+              <div class="text-center">
+                <p class="font-bold text-lg text-gray-900 dark:text-white">{{ user.following }}</p>
+                <p class="text-gray-600 dark:text-gray-400">Siguiendo</p>
+              </div>
+            </div>
+            <button
+              (click)="toggleFollow()"
+              [class.bg-gray-200]="isFollowing"
+              [class.dark:bg-gray-700]="isFollowing"
+              [class.bg-gradient-to-r]="!isFollowing"
+              [class.from-pink-500]="!isFollowing"
+              [class.to-purple-600]="!isFollowing"
+              class="px-6 py-2 rounded-lg font-bold text-white hover:opacity-80 transition"
+            >
+              {{ isFollowing ? 'Siguiendo' : 'Seguir' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Posts Grid -->
+    <div class="max-w-4xl mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Publicaciones</h2>
+      <div *ngIf="userPosts.length === 0" class="text-center text-gray-500">
+        <p>Este usuario aún no tiene publicaciones</p>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <img
+          *ngFor="let post of userPosts"
+          [src]="post.image"
+          alt="Post"
+          class="w-full h-48 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !user" class="text-center text-gray-500 py-12">
+    <p>No se pudo cargar el perfil</p>
+  </div>
+</div>

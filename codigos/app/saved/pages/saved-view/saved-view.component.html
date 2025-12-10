@@ -1,0 +1,76 @@
+<div class="min-h-screen bg-white dark:bg-gray-900">
+  <!-- Header -->
+  <div class="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+        🖇️ Posts Guardados
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">{{ savedPosts.length }} publicaciones guardadas</p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="text-center py-12">
+      <p class="text-gray-500 dark:text-gray-400">Cargando publicaciones guardadas...</p>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && savedPosts.length === 0" class="text-center py-12">
+      <p class="text-gray-500 dark:text-gray-400 text-lg">Aún no tienes posts guardados</p>
+      <p class="text-gray-400 dark:text-gray-500 text-sm mt-2">Guarda tus posts favoritos para verlos aquí más tarde</p>
+    </div>
+
+    <!-- Saved Posts Grid -->
+    <div *ngIf="!isLoading && savedPosts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div *ngFor="let post of savedPosts" class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+        <!-- Image -->
+        <div class="relative overflow-hidden bg-gray-100 aspect-square group">
+          <img [src]="post.image" [alt]="post.caption" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+
+          <!-- Overlay on Hover -->
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center gap-8">
+            <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <p class="text-3xl font-bold">{{ post.likes }}</p>
+              <p class="text-sm">👍</p>
+            </div>
+            <div class="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <p class="text-3xl font-bold">{{ post.comments.length }}</p>
+              <p class="text-sm">💬</p>
+            </div>
+          </div>
+
+          <!-- Remove Button -->
+          <button
+            (click)="removeSavedPost(post.id)"
+            class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity"
+            title="Quitar de guardados"
+          >
+            ✕
+          </button>
+        </div>
+
+        <!-- Post Info -->
+        <div class="p-4">
+          <!-- User Info -->
+          <div class="flex items-center gap-3 mb-3">
+            <img [src]="post.user.profileImage" [alt]="post.user.username" class="w-8 h-8 rounded-full" />
+            <div>
+              <p class="font-semibold text-sm">{{ post.user.username }}</p>
+            </div>
+          </div>
+
+          <!-- Caption -->
+          <p class="text-sm text-gray-700 dark:text-gray-300 mb-3 line-clamp-2">{{ post.caption }}</p>
+
+          <!-- Stats -->
+          <div class="flex gap-4 text-xs text-gray-500 border-t border-gray-100 dark:border-gray-700 pt-3">
+            <span>{{ post.likes }} 👍</span>
+            <span>{{ post.comments.length }} 💬</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.nav-item a.active {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  color: #dc2743;
+  font-weight: 700;
+  border-left: 4px solid #dc2743;
+  padding-left: calc(1rem - 4px);
+}
+
+.nav-item a.active:hover {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+}
+
